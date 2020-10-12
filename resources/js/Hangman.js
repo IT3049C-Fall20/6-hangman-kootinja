@@ -7,7 +7,6 @@ class Hangman {
     this.canvas = _canvas;
     this.ctx = this.canvas.getContext(`2d`);
   }
-
   /**
    * This function takes a difficulty string as a patameter
    * would use the Fetch API to get a random word from the Hangman
@@ -61,8 +60,6 @@ class Hangman {
     this.didWin = false;
     next();
   }
-
-
   /**
    *
    * @param {string} letter the guessed letter.
@@ -147,18 +144,7 @@ class Hangman {
     guessArr.filter(function(word){
       word_onWrongGuess.includes(word);
     })
-/*
-    for(let i=0; i< wordArrlength; i++){
-      if(guessArr.length == i){
-        this.drawHead();
-        this.drawBody();
-        this.drawRightArm();
-        this.drawLeftArm();
-        this.drawRightLeg();
-        this.drawLeftLeg();
-      }
-    }
-  */
+
     if(guessArr.length == 1 ){
       this.drawHead();
     }
