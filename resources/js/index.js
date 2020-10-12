@@ -84,7 +84,8 @@ if(game.isOver){
     guessInput.removeAttribute('disabled');
     guessButton.removeAttribute('disabled');
     });
-  } catch (error) {
+
+  } ,catch (error) {
     console.error(error);
-    alert(error + error.stack);
+    alert(error);
   }
