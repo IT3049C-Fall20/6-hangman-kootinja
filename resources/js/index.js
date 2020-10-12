@@ -39,27 +39,52 @@ let game = new Hangman(canvas);
      guessesText.innerText = game.getGuessesText();
     });
 
-
-  // add a submit Event Listener to the guessForm
+// add a submit Event Listener to the guessForm
+guessForm.addEventListener(`submit`, function (e) {
+  e.preventDefault();
   //    get the guess input
+  const letter = guessInput.value;
   //    call the game guess() method
+  game.guess(letter);
   //    set the wordHolderText to the game.getHolderText
+  wordHolderText.innerText = game.getWordHolderText();
   //    set the guessesText to the game.getGuessesText
+  guessesText.innerText = game.getGuessesText();
   //    clear the guess input field
-  // Given the Guess Function calls either the checkWin or the onWrongGuess methods
-  // the value of the isOver and didWin would change after calling the guess() function.
-  // Check if the game isOver:
-  //      1. disable the guessInput
-  //      2. disable the guessButton
-  //      3. show the resetGame button
+  guessInput.value = '';
+
+// Given the Guess Function calls either the checkWin or the onWrongGuess methods
+//game.guess(letter);
+// the value of the isOver and didWin would change after calling the guess() function.
+
+// Check if the game isOver:
+if(game.isOver){
+  // 1. disable the guessInput 
+  guessInput.setAttribute('disabled', 'disabled');
+  //2. disable the guessButton
+  guessButton.setAttribute('disabled', 'disabled');
+  //3. show the resetGame button
+  resetGame.classList.remove(`hidden`);
+  console.log("game is over");
   // if the game is won or lost, show an alert.
-  guessForm.addEventListener(`submit`, function (e) {});
+  if(game.didWin){
+    alert('congratulations You won')
+  }else{
+    alert('you lose')
+  }
+}
+});
 
   // add a click Event Listener to the resetGame button
-  //    show the startWrapper
-  //    hide the gameWrapper
-  resetGame.addEventListener(`click`, function (e) {});
-} catch (error) {
-  console.error(error);
-  alert(error);
-}
+  resetGame.addEventListener(`click`, function (e) {
+    //how the startWrapper
+    startWrapper.classList.remove(`hidden`);
+    //hide the gameWrapper
+    gameWrapper.classList.add(`hidden`);
+    guessInput.removeAttribute('disabled');
+    guessButton.removeAttribute('disabled');
+    });
+  } catch (error) {
+    console.error(error);
+    alert(error + error.stack);
+  }
